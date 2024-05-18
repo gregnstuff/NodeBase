@@ -1,0 +1,4 @@
+1. Call module
+example: const Account = require("../models/accountModel");
+
+Create functions for CRUD and to call views

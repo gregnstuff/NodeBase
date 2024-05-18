@@ -1,0 +1,17 @@
+a.	Get packages
+i.	const path = require("path");
+ii.	const express = require("express");
+b.	Set app variable for ease of calling
+i.	const app = express();
+c.	Set export for this module
+i.	module.exports = app;
+
+
+Add route to app.js before module.exports
+a.	Map to routes
+example:
+app.use("/", viewRouter);
+app.use("/api/v1/users", userRouter);
+app.use("/api/v1/products", productRouter);
+app.use("/api/v1/feature", featureRouter);
+app.use("/api/v1/account", accountRouter);

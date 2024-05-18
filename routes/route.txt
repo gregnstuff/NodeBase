@@ -1,0 +1,23 @@
+a.	Add express to enable routing
+i.	const express = require('express');
+b.	Create a controller line for controller to be created later
+i.	example: const bookingController = require('../controllers/bookingController');
+c.	Add authController to be able to apply security
+i.	example: const authController = require('../controllers/authController');
+d.	Add express router
+i.	const router = express.Router();
+e.	Add export router at the end of the file
+i.	module.exports = router;
+routes will be placed between 1.d and 1.e
+
+example:
+router
+  .route("/")
+  .get(accountController.getAllAccounts)
+  .post(accountController.createAccount);
+
+router
+  .route("/:id")
+  .get(accountController.getAccount)
+  .patch(accountController.updateAccount)
+  .delete(accountController.deleteAccount);

@@ -10,7 +10,12 @@ const cookieParser = require("cookie-parser");
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
 
+const viewRouter = require("./routes/viewRoutes");
+
 const app = express();
+
+app.set("view engine", "pug");
+app.set("views", path.join(__dirname, "views"));
 
 // Set Security HTTP headers
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
@@ -42,6 +47,7 @@ app.use(
 );
 
 //Enter Routes here
+app.use("/", viewRouter);
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl}`, 404));

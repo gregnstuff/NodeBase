@@ -4,6 +4,9 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
 
+const AppError = require("./utils/appError");
+const globalErrorHandler = require("./controllers/errorController");
+
 const app = express();
 
 // Set Security HTTP headers
@@ -34,5 +37,13 @@ app.use(
     whitelist: ["quanity"],
   })
 );
+
+//Enter Routes here
+
+app.all("*", (req, res, next) => {
+  next(new AppError(`Can't find ${req.originalUrl}`, 404));
+});
+
+app.use(globalErrorHandler);
 
 module.exports = app;
